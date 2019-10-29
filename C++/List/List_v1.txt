@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std;
+
+class List
+{   public:
+    int value;
+    List* nextElement = 0;
+    List()
+    {
+       // cout<<"Exist"<<endl;
+    }
+    ~List()
+    {
+        //cout<<"Mor"<<endl;
+    }
+    void afis()
+    {
+        cout<<2;
+    }
+};
+
+int main()
+{
+    List* a = new List();
+    List* b = new List();
+    List* c = new List();
+    a->value = 10;
+    b->value = 15;
+    c->value = 20;
+    a->nextElement  = b;
+    b->nextElement = c;
+    
+    cout<<a->value<<endl;
+    cout<<b->value<<endl;
+    cout<<c->value<<endl;
+    
+    cout<<endl;
+    
+    List* p = a;
+    
+    while(p != 0)
+    {
+     cout<<p->value<<endl;
+     p = p->nextElement;
+    }
+}
