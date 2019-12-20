@@ -1,0 +1,20 @@
+Create a class that contains a reference to an int. (class Base { int& myInt; }; ).
+Create an instance of this class.
+
+#include <iostream>
+
+using namespace std;
+class Base 
+{
+    public:
+    int& myInt;
+    Base(int& _param):myInt(_param)
+    {
+          
+    }
+};
+int main()
+{
+    int a;
+Base obj(a);
+}

@@ -1,0 +1,42 @@
+Check web for diamond problem. Create an example of it. 
+
+#include <iostream>
+
+using namespace std;
+class Lizard 
+{ 
+    int age;
+    
+public:
+    int getAge()
+    { 
+        return age;
+        
+    }
+};
+ 
+
+
+class Crocodil : virtual public Lizard
+{
+    
+};
+
+class Dinozaur : virtual public Lizard
+{
+    
+};	
+						
+class Crocozaur : public Crocodil, public Dinozaur 
+{ 
+    
+};	
+
+int main()
+{
+    Crocozaur croco ;
+
+    int age = croco.getAge();  
+
+    return 0;
+}

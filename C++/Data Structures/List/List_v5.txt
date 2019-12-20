@@ -1,0 +1,151 @@
+#include <iostream>
+
+using namespace std;
+template <typename TONY>
+class List
+{
+    class Node
+    {   public:
+        TONY value;
+        Node* nextElement = 0;
+        
+      
+    };
+    private:
+    int size =0;
+    Node* p_begin = 0;
+    Node* p_end = 0;
+    
+    public:
+    void push_back(TONY numero)
+    {
+        if(size == 0)
+        {
+            p_begin = new Node();
+            p_begin->value = numero;
+            p_end = p_begin;
+            size++;
+        }
+        else
+        {
+            Node* temp = new Node();
+            p_end->nextElement = temp;
+            p_end = p_end->nextElement;
+            p_end->value = numero;
+            size++;
+        }
+    }
+    void erase()
+    {
+        if(size > 0)
+        {
+        Node* FirstElement = p_begin;
+       p_begin= p_begin->nextElement;
+        
+        delete FirstElement;
+        size--;
+        }
+    }
+    void addcomp(TONY param_value, int _position)
+    {   
+        if(_position == 0)
+        {
+            Node* temp = new Node();
+            (*temp).value = param_value;
+            (*temp).nextElement = p_begin;
+            p_begin = temp;
+            size++;
+        }
+        else
+        {
+            Node* vecinStanga = p_begin;
+            Node* vecinDreapta = p_begin;
+            for(int i = 1; i <= _position; ++i)
+            {
+                vecinStanga = vecinDreapta;
+                vecinDreapta = (*vecinDreapta).nextElement;
+            }
+            Node* temp = new Node();
+            (*temp).value = param_value;
+            (*vecinStanga).nextElement = temp; 
+            (*temp).nextElement =   vecinDreapta;
+            size++;
+            
+            
+        }
+    }
+    void pop_back()
+    {
+        if(size == 1)
+        {
+            delete p_end;
+            size --;
+            p_end = p_begin =0;
+        }
+        else if(size > 0)
+        {
+            Node* newLastElement = p_begin;
+            while(newLastElement->nextElement != p_end)
+            {
+                newLastElement = newLastElement->nextElement;
+            }
+            delete p_end;
+            p_end = newLastElement;
+            p_end->nextElement = 0;
+            size--;
+        }
+    }
+  
+    void afis()
+    {
+        
+     Node* p = p_begin;   
+    while(p != 0)
+    {
+     cout<<p->value<<" ";
+     p = p->nextElement;
+    }
+    }
+    
+    
+};
+
+
+
+
+
+int main()
+{
+    
+    
+     List<int> myList;
+     List<char> myCHarList;
+     
+     myCHarList.push_back('a');
+     myCHarList.push_back('b');
+     myCHarList.push_back('c');
+     myCHarList.push_back('d');
+     myCHarList.push_back('e');
+     myCHarList.push_back('f');
+     myCHarList.addcomp('x',2);
+  
+     myCHarList.pop_back();
+     myCHarList.pop_back();
+    
+     myCHarList.afis();
+
+      
+     myList.push_back(1);
+     myList.push_back(2);
+     myList.push_back(3);
+     myList.push_back(4);
+     myList.push_back(5);
+     myList.push_back(6);
+     myList.addcomp(1997,2);
+  
+     myList.pop_back();
+     myList.pop_back();
+    
+     myList.afis();
+
+}

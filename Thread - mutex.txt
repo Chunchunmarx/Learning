@@ -1,0 +1,73 @@
+
+
+#include <iostream>
+#include <unistd.h>
+#include<thread>
+#include <mutex>
+
+using namespace std;
+
+
+mutex mtx;
+
+
+void list_numbers()
+{
+    for (int i = 1; i<10;++i)
+    {
+        mtx.lock();
+        cout<<i;
+        cout<<endl;
+        mtx.unlock();
+        
+        usleep (1000000);
+    }
+}
+
+void list_letters()
+{
+    for (char i = 'a'; i<'k'+1;++i)
+    {
+        mtx.lock();
+        cout<<i;
+        cout<<endl;
+        mtx.unlock();
+        
+        usleep (1000000);
+    }
+}
+void afis(int param) 
+{
+    for(int i = 0; i <= param; ++i)
+    {
+        lock_guard<mutex> lck (mtx);
+        cout<<"i: ";
+        cout<<i;
+        cout<<" Param:";
+        cout<<param;
+        cout<<endl;
+    }
+}
+
+int main ()
+{
+  
+    thread fun_1(list_numbers);
+    list_letters();
+    
+    fun_1.join();
+    
+    cout<<"THE JOIN WAS COMPLETED!!!"<<endl;
+    
+    //list_numbers();
+    //list_letters();
+thread array_cu_treaduri[10];
+  
+  for (int i=0; i<10; ++i)
+    array_cu_treaduri[i] = thread(afis,i+1);
+
+  for (auto& th : array_cu_treaduri) th.join();
+
+  return 0;
+    
+}

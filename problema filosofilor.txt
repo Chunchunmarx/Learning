@@ -1,0 +1,91 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+using namespace std;
+
+mutex mutex_filosofi;
+bool betisoare[5];
+
+void comportament_filosof(int id_filosof)
+{
+    bool betisor_stang = 0;
+    bool betisor_drept= 0;
+    int indice_stang;
+    int indice_drept;
+    
+    if(id_filosof == 4)
+    {
+        indice_stang = 4;
+        indice_drept = 0;
+    }
+    else
+    {
+        indice_stang = id_filosof;
+        indice_drept = id_filosof+1;
+    }
+    
+    while(true)
+    {
+        mutex_filosofi.lock();
+        //cout<<indice_stang<<" "<<betisoare[indice_stang]<<" "<<indice_drept<<" "<<betisoare[indice_drept]<<endl;
+        if(betisoare[indice_stang] == 1 || betisoare[indice_drept] == 1)
+        {
+            continue;
+        }
+        
+        if(betisor_stang == 0)
+        {
+            if(betisoare[indice_stang] == 0)
+            {
+                betisor_stang = 1;
+                betisoare[indice_stang] = 1;
+            }
+        }
+        
+        if(betisor_drept == 0)
+        {
+            if(betisoare[indice_drept] == 0)
+            {
+                betisor_drept = 1;
+                betisoare[indice_drept] = 1;
+            }
+        }
+        
+        if(betisor_stang == 1 && betisor_drept ==1)
+        {
+            cout<<"Filosoful "<<id_filosof<<" a papat!"<<endl;
+            betisor_stang = 0;
+            betisor_drept= 0;
+            betisoare[indice_stang] =0;
+            betisoare[indice_drept]=0;
+        }
+        
+        mutex_filosofi.unlock();
+    }
+}
+
+
+int main()
+{
+    thread thread_object_1(comportament_filosof, 0);
+    thread thread_object_2(comportament_filosof, 1);
+    thread thread_object_3(comportament_filosof, 2);
+    thread thread_object_4(comportament_filosof, 3);
+    thread thread_object_5(comportament_filosof, 4); 
+    
+    thread_object_1.join();
+    thread_object_2.join();
+    thread_object_3.join();
+    thread_object_4.join();
+    thread_object_5.join();
+    return 0;
+}

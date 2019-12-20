@@ -1,0 +1,38 @@
+
+Create an empty class -> display the size of it. 
+Add an int -> display the size of it
+Add a virtual -> display the size of it
+Add another virtual -> display the size of it
+
+#include <iostream>
+
+using namespace std;
+class EmptyClass
+{
+    
+};
+class Class_int
+{
+    int a;
+};
+class Class_virtual
+{
+    virtual void func()
+    {
+        
+    }
+    virtual void func2()
+    {
+        
+    }
+};
+
+
+
+int main()
+{
+   cout<<sizeof(EmptyClass)<<endl;
+   cout<<sizeof(Class_int)<<endl;
+   cout<<sizeof(Class_virtual)<<endl;
+   
+}

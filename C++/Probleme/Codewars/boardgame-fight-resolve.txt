@@ -1,0 +1,114 @@
+//https://www.codewars.com/kata/boardgame-fight-resolve/train/cpp
+
+
+Soll mea si ultra faina:
+
+char a[100][100] =
+{
+{'a','a','a','d'},
+{'d','a','a','a'},
+{'a','d','a','a'},
+{'a','a','d','a'}
+};
+
+char fightResolve(char defender, char attacker)
+{
+  if(defender <= 122 && defender >= 97 && attacker >=97 && attacker <= 122)
+  {
+  
+    return -1;
+  }
+  if(defender <= 90 && defender >= 65 && attacker >=65 && attacker <= 90)
+  {
+    return -1;
+  }
+   int CodeDefender = -1;
+   int CodeAttacker = -1;
+   switch(attacker)
+   {
+     case 'a' :
+     case 'A' :
+       CodeAttacker = 0;
+       break;
+     case 'k' :
+     case 'K' :
+       CodeAttacker = 1;
+       break;
+     case 'p' :
+     case 'P' :
+       CodeAttacker = 2;
+       break;
+     case 's' :
+     case 'S' :
+       CodeAttacker = 3;
+       break;
+   }
+   
+   switch(defender)
+   {
+     case 'a' :
+     case 'A' :
+       CodeDefender = 0;
+       break;
+     case 'k' :
+     case 'K' :
+       CodeDefender = 1;
+       break;
+     case 'p' :
+     case 'P' :
+       CodeDefender  = 2;
+       break;
+     case 's' :
+     case 'S' :
+       CodeDefender  = 3;
+       break;
+   }
+  
+    //if(a[CodeAttacker][CodeDefender] == 'a')
+    if(a[CodeDefender][CodeAttacker] == 'a')
+    {
+        return attacker;
+    }
+    else
+    {
+        return defender;
+    }
+  
+  
+  /*int v[100] = {1,2,3,4};
+  for(int i = 1; i <=4; i++)
+  {
+    for(int j; j <= 4; ++j)
+    {
+      a[i][j]='a';
+    }
+  }
+  
+  a[1][4]='d';
+  a[2][1]='d';
+  a[3][2]='d';
+  a[4][3]='d';
+*/
+
+  
+}
+
+Soll faina:
+#include <map>
+char fightResolve(char d, char a) d = S; a = p;
+{
+    std::map<char, char> ma = {{'s', 'p'}, {'p', 'k'}, {'k', 'a'}, {'a', 's'}};
+    /*
+    ma['s'] = 'p';
+    ma['p'] = 'k';
+    ma['k'] = 'a';
+    ma['a'] = 's';
+    ma[defender] = attacker; =? defenderrul castiga
+    */
+    
+    if(tolower(d) == d && tolower(a) == a || toupper(d) == d && toupper(a) == a) return -1;
+    
+    if(ma[tolower(d)] == tolower(a)) return d;
+    
+    return a;
+}

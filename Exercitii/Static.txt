@@ -1,0 +1,31 @@
+Add a static variable and a static function. Call them through the class and through an object.
+
+#include <iostream>
+
+using namespace std;
+
+class Base
+{
+    public:
+  static int a;
+  
+  static void func()
+  {
+      cout<<"Static func"<<endl;
+     
+  }
+  
+};
+
+int Base::a;
+
+int main()
+{
+    Base obj1;
+   Base obj2;
+   obj1.func();
+    cout<<obj1.a;
+    Base::func();
+     Base::a =20;
+    cout<<obj2.a;
+}

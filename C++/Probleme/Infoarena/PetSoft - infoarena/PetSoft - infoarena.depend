@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1576068758 source:c:\users\aoprescu\desktop\git\learning\c++\petsoft - infoarena\main.cpp
+	<iostream>
+	<fstream>
+

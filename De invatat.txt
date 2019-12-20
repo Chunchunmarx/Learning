@@ -1,0 +1,19 @@
+variable types, struct/classes X
+functions X
+callstack 
+lifetime - stack, heap (new/delete)
+struct/class
+ctor/dtor, RAII
+access modifiers
+static, const
+std::vector, unordered_map (+initializer list)
+using declaration (alias)
+virtuals, vptr vtable, override
+pointers (+nullptr), reference
+ref object in class (composition) < for instance creation 
+enum class
+copy ctor, move ctor (default, delete), delegating ctors, inheriting ctors 
+auto
+lambda, std::function?
+threads + mutex + lock_guard + deadlock + scoped_lock (critical section, race condition)
+smart pointers (unique, shared) + make_unique/make_shared

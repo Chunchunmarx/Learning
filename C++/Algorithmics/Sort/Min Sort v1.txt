@@ -1,0 +1,35 @@
+#include <iostream>
+
+using namespace std;
+
+
+
+
+
+int main()
+{
+    int n = 10;
+    int v[] = {2,6,3,4,6,8,3,2,1,56};
+    int min;
+    int indice_min;
+    
+    for(int i = 0 ; i<n ;i++)
+    {
+        min = v[i];
+        indice_min = i;
+        for(int j = i ; j < n; ++j)
+        {
+            if(min > v[j])
+            {
+                min = v[j];
+                indice_min = j;
+            }
+        } 
+        
+        int var = v[indice_min];
+        v[indice_min]=v[i];
+        v[i]=var;
+                
+    }
+    
+}

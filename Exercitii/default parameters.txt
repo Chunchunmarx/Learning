@@ -1,0 +1,27 @@
+Add a function that receives two default params. Call it with given param and with no params at all, display the parameters received in the function.
+Try to add default param only for the first parameter. Notice what happens.
+
+#include<iostream>
+
+using namespace std;
+
+class parent
+{
+    public:
+    void func(int _param=0,int parametru=0)
+    {
+        
+        cout<<_param<<" "<<parametru<<endl;
+    }
+};
+
+int main()
+{
+  
+  parent obj;
+  
+  obj.func();  //print:0 0
+  obj.func(1 ,2); //print 1 2
+  obj.func(1996); //error
+    
+}

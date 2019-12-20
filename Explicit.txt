@@ -1,0 +1,62 @@
+#include <iostream>
+
+using namespace std;
+
+class Person
+{
+    public:
+    //char name[100];
+    int age;
+    
+    Person()
+    {
+        cout<<"Person was created!"<<endl;
+    }
+    
+    explicit Person(int _param)
+    {
+        cout<<"VICTORIE"<<endl;
+    }
+    
+    Person(char _param)
+    {
+        cout<<"DEFEAT"<<endl;
+    }
+};
+
+class Student:virtual public Person
+{
+    public:
+    Student()
+    {
+        cout<<"Student was created!"<<endl;
+    }
+};
+
+class Faculty:virtual public Person
+{
+    public:
+    Faculty()
+    {
+        cout<<"Faculty was created!"<<endl;
+    }
+};
+
+class TA:public Faculty, public Student
+{
+    public:
+    TA()
+    {
+        cout<<"TA was created!"<<endl;
+    }
+};
+
+
+
+int main()
+{
+    Person obj;
+    Person obj_2;
+
+    return 0;
+}

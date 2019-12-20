@@ -1,0 +1,18 @@
+class parent
+{
+    public:
+    void func(int _param=0,int parametru=0)
+    {
+        
+        cout<<_param<<parametru<<endl;
+    }
+};
+
+int main()
+{
+  
+  parent obj;
+  
+  obj.func();
+    
+}

@@ -1,0 +1,27 @@
+Create a global int, give it a value.
+Create a function and add an int with the same name, give it another value. 
+Display the int to the screen.
+Display the global int to the screen (from the same function).
+
+
+#include <iostream>
+
+using namespace std;
+
+ int global = 10;
+ class Base
+ {   public:
+     void func()
+     {
+         int global = 20;
+         cout<<global<<endl;
+         cout<<::global;
+     }
+     
+ };
+int main()
+{   
+Base obj;
+    obj.func();
+    
+}

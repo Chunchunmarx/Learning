@@ -1,0 +1,38 @@
+Add a constructor with one parameter (an int).  Create an object through implicit conversion. (class Base { ... }; ... Base obj = 10;)
+Add explicit in front of constructor. Notice the difference
+
+#include <iostream>
+
+using namespace std;
+class Base
+{
+    public:
+    Base(int _param)
+    {
+        cout<<"I'm an int"<<endl;
+    }
+    explicit Base(char _param)
+    {
+        cout<<"I'm a char"<<endl;
+    }
+    
+    
+};
+class Base2
+{
+    public:
+      explicit Base2(char _param)
+    {
+        cout<<"I'm a char"<<endl;
+    }
+};
+
+
+
+int main()
+{
+  Base obj= 10; //works
+  Base2 obj = 10; //error
+  Base obj2('a');//works
+  Base2 obj2('a');//works
+}

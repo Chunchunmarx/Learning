@@ -1,0 +1,28 @@
+Create a class, add a cout message in ctor/dtor.
+Allocate an array of that type( Data* objects = new Data[10]);. Use delete objects and see what happens. use delete[] afterwards.
+
+#include <iostream>
+
+using namespace std;
+class Base
+{
+    public:
+    Base()
+    {
+        cout<<"Constructor"<<endl;
+    }
+    ~Base()
+    {
+        cout<<"Destructor"<<endl;
+    }
+};
+
+
+int main()
+{
+    
+    Base*obj = new Base[10];
+    delete obj;    //error
+    delete[] obj;  //sterge obiectele
+ 
+    }

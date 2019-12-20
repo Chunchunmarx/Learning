@@ -1,0 +1,58 @@
+#include <iostream>
+
+using namespace std;
+
+
+void Afis(int v[], int n)
+{
+    for(int i = 0 ; i<n ;i++)
+    {
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int Search_for_min_indice(int v[], int i, int n)
+{
+    int min = v[i];
+    int indice_min = i;
+    for(int j = i ; j < n; ++j)
+    {
+        if(min > v[j])
+        {
+            min = v[j];
+            indice_min = j;
+        }
+    } 
+    return indice_min;
+}
+
+void Swap_element_with_min(int v[], int indice_min, int i)
+{
+    int var = v[indice_min];
+    v[indice_min]=v[i];
+    v[i]=var;
+}
+
+void sort(int v[], int n)
+{
+   for(int i = 0 ; i<n ;i++)
+    {
+        int indice_min;
+        indice_min = Search_for_min_indice(v,i,n);
+        Swap_element_with_min(v, indice_min, i);
+        Afis(v,n);  
+    } 
+}
+
+int main()
+{
+    int n = 10;
+    int v[] = {2,6,3,4,6,8,3,2,1,56};
+    int min =v[0];
+    int indice_min = 0;
+    
+    Afis(v,n);
+    
+    sort(v,n);
+}

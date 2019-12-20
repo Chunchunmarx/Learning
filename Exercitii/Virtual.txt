@@ -1,0 +1,40 @@
+Create a class with members in all access modifiers.
+Create two classes: one inherits privately, the other publicly.
+Add a virtual function in both base and derived class, call the function from a pointer to base class.
+
+#include <iostream>
+
+using namespace std;
+
+class Base
+{
+    public:
+    int a;
+    private:
+    int b;
+    protected:
+    int c;
+    public:
+    virtual void func()
+    {
+        cout<<"Base"<<endl;
+    }
+};
+class Derived_public :public Base
+{
+    public:
+     virtual void func()
+    {
+        cout<<"Derived_public"<<endl;
+    }
+};
+class Derived_private :private Base
+{
+    
+    
+};
+int main()
+{
+    Base* ptr = new Derived_public();
+    (*ptr).func();
+}

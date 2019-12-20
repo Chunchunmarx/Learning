@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1576484472 source:c:\users\aoprescu\desktop\git\learning\c++\perechi-infoarena\main.cpp
+	<iostream>
+	<fstream>
+

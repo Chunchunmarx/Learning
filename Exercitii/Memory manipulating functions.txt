@@ -1,0 +1,60 @@
+Create all 5 functions that are required when manipulating memory (dtor , copy and move constructor/assign operator).
+
+#include<iostream>
+
+using namespace std;
+class Pointed_class
+{
+    
+};
+class Base
+{
+    public:
+    int * ptr;
+    int a;
+    
+    Base()
+    {  
+        cout<<"Created by default Constructor"<<endl;
+        ptr = new int();
+    }
+  Base& operator=( Base& _param )
+    {
+        cout<<"operator egal"<<endl;
+        ptr = new int;
+        *ptr = *(_param.ptr);
+       
+    }
+    Base(const Base& _param)
+    {
+        cout<<"Copy constructor"<<endl;
+        
+        this->a = _param.a;
+        
+        ptr = new int();
+        *ptr = *(_param.ptr);
+    }
+    ~Base()
+    {
+        cout<<"Destructor"<<endl;
+        delete ptr;
+    }
+};
+
+void func(Base _param)
+{
+    *(_param.ptr)=1996;
+}
+
+
+
+
+int main()
+{
+  Base obj_1;
+  *(obj_1.ptr) = 10;
+  Base obj_2(obj_1);
+  
+  
+  
+}

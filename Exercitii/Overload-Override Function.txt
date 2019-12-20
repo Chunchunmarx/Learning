@@ -1,0 +1,56 @@
+   Create a base and a derived class. Create function overload / function overwrite.
+
+ #include <iostream> 
+using namespace std; 
+  
+void afis(int i) { 
+  cout << " Int " << i << endl; 
+} 
+void afis(char  c)
+{ 
+  cout << " Char " << c << endl; 
+} 
+
+  
+int main()
+{ 
+     afis(10); 
+     afis('c'); 
+  
+  
+}
+******************************************************************************************************************************************
+#include<iostream> 
+using namespace std; 
+  
+class Base 
+{ 
+public: 
+    virtual void afis() 
+    { 
+        cout << "Base Afis"<<endl; 
+    } 
+   void func() 
+    { 
+        cout << "Func Base"<<endl;; 
+    } 
+}; 
+  
+class Derived : public Base 
+{ 
+public: 
+   
+    void afis() 
+    { 
+        cout << "Derived afis"<<endl;
+    } 
+}; 
+  
+
+int main() 
+{ 
+    Derived obj; 
+    Base &obj2 = obj; 
+    obj2.afis(); 
+     obj.func();
+} 

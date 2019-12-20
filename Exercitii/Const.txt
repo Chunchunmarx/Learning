@@ -1,0 +1,26 @@
+Add a const function, try to modify class members.
+Add mutable to a member, change it from the const function.
+
+#include <iostream>
+
+using namespace std;
+class Base
+{ 
+    public:
+    mutable int a ;
+    int b;
+     void func()const
+    {
+        a = 20;
+        cout<<a ; 
+    }
+    
+    
+};
+
+int main()
+{
+    Base obj;
+    
+    obj.func();
+}

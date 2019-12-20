@@ -1,0 +1,41 @@
+Create a function that receives a pointer, and another one that receives a reference.
+Try to send no object in the functions. Notice the differences.
+
+#include <iostream>
+
+using namespace std;
+
+class Base
+{
+   public:
+   int a;
+   Base()
+   {
+       cout<<"Base a fost creat"<<endl;
+   }
+   ~Base()
+   {
+       cout<<"Base a fost distrus"<<endl;
+   }
+};
+
+void functie (Base* ptr)
+{
+    
+}
+void func(Base& referinta)
+{
+    
+}
+
+
+
+int main()
+{
+    Base obj;
+    
+    Base* p = &obj;     // pointer catre obj
+    Base& ref = obj;    // referinta catre obj
+    functie(p);         // echivalent functie(&obj);
+    func(ref);          // echivalent func(obj);
+}
