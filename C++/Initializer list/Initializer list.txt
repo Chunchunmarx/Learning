@@ -1,0 +1,159 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+//https://www.geeksforgeeks.org/when-do-we-use-initializer-list-in-c/
+#include <iostream>
+#include <typeinfo>   
+using namespace std; 
+
+/*
+*   syntaxa lista de initializare
+*   nume_variabila_membru(valoarea_pe_care_o_ia_membrul) ,nume_variabila_membru(valoarea_pe_care_o_ia_membrul) , ..
+*/
+
+//Momente cnad suntem obligati sa folosim initializer list
+
+//cand avem o variabila de tip CONST, SI NON-static suntem obligati sa initializam(sa ii atribuim o valoare) membrului de tip const la declarare
+//initializer list e apelat inainte ca obiectul sa fie terminat de construit
+class Const__Initializer_List
+{
+    public:
+    const int member_variable;
+    
+    Const__Initializer_List(int _parameter):member_variable(_parameter)
+    { }
+};
+
+//cand avem o variabila de tip REFERINTA suntem obligati sa initializam(sa ii atribuim o valoare) membrului de tip const la declarare
+//initializer list e apelat inainte ca obiectul sa fie terminat de construit
+class Reference__Initializer_List
+{
+    public:
+    int& member_variable;
+    
+    Reference__Initializer_List(int _parameter):member_variable(_parameter)
+    { }
+};
+
+
+
+//3) For initialization of member objects which do not have default constructor:
+//In the following example, an object “a” of class “A” is data member of class “B”, and “A” doesn’t have default constructor. Initializer List must be used to initialize “a”.
+
+class Puiut
+{
+    public:
+    Puiut() = delete;
+    Puiut(int x)
+    {
+        
+    }
+};
+
+class Mamica
+{
+    public:
+    Puiut puiutul_mamicii;  
+    
+    Mamica():puiutul_mamicii(10)
+    {
+        
+    }
+};
+
+//4) For initialization of base class members : 
+//Like point 3, the parameterized constructor of the base class can only be called using Initializer List.
+
+class Base { 
+    int i; 
+public: 
+    Base(int ); 
+}; 
+  
+Base::Base(int arg) { 
+    i = arg; 
+    cout << "Base's Constructor called: Value of i: " << i << endl; 
+} 
+  
+
+class Derived: Base // Class B is derived from A 
+{ 
+    public: 
+    Derived(int ); 
+}; 
+  
+Derived::Derived(int x):Base(x) { //Initializer list must be used 
+    cout << "Derived's Constructor called"; 
+} 
+
+//5) When constructor’s parameter name is same as data member
+//If constructor’s parameter name is same as data member name then the data member must be initialized either using this pointer or Initializer List. In the following example, both member name and parameter name for A() is “i”.
+
+
+class Name_Hiding__Initializer_List { 
+    int i; 
+public: 
+    Name_Hiding__Initializer_List(int ); 
+    int getI() const { return i; } 
+}; 
+  
+Name_Hiding__Initializer_List::Name_Hiding__Initializer_List(int i):i(i) { }  // Either Initializer list or this pointer must be used 
+/* The above constructor can also be written as  
+A::A(int i) {  
+    this->i = i; 
+} 
+*/
+  
+  
+6) For Performance reasons:
+It is better to initialize all class variables in Initializer List instead of assigning values inside body. Consider the following example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Without Initializer List 
+class MyClass { 
+    Type variable; 
+public: 
+    MyClass(Type a) {  // Assume that Type is an already 
+                     // declared class and it has appropriate  
+                     // constructors and operators 
+      variable = a; 
+    } 
+}; 
+Here compiler follows following steps to create an object of type MyClass
+1. Type’s constructor is called first for “a”.
+2. The assignment operator of “Type” is called inside body of MyClass() constructor to assign
+
+    variable = a; 
+3. And then finally destructor of “Type” is called for “a” since it goes out of scope.
+
+Now consider the same code with MyClass() constructor with Initializer List
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// With Initializer List 
+class MyClass { 
+    Type variable; 
+public: 
+    MyClass(Type a):variable(a) {   // Assume that Type is an already 
+                     // declared class and it has appropriate 
+                     // constructors and operators 
+    } 
+}; 
+With the Initializer List, the following steps are followed by compiler:
+1. Copy constructor of “Type” class is called to initialize: variable(a). The arguments in the initializer list are used to copy construct “variable” directly.
+2. The destructor of “Type” is called for “a” since it goes out of scope.
+
+As we can see from this example if we use assignment inside constructor body there are three function calls: constructor + destructor + one addition assignment operator call. And if we use Initializer List there are only two function calls: copy constructor + destructor call. See this post for a running example on this point.
+
+
