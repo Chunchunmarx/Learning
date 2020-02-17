@@ -87,7 +87,7 @@ public:
         return m_counter->get();
     }
 
-
+m_counter
     T* get()
     {
         return m_ptr;
